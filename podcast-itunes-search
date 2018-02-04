@@ -1,0 +1,12 @@
+#!/bin/sh
+# EXAMPLE: podcast-itunes-search methodisch inkorrekt
+
+# GNU grep switch
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    GREP="ggrep"
+else
+    GREP="grep"
+fi
+
+searchterm=$(echo "$@" | tr " " "+")
+wget -q --no-check-certificate -O- "https://itunes.apple.com/search?term=$searchterm&entity=podcast" | ${GREP} -oP '(?<=\"trackName\":\").*?[^\",]*|(?<=\"feedUrl\":\").*?[^\",]*' | sed -e 's/http/ >>> http/g'

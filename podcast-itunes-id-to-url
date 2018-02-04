@@ -1,0 +1,11 @@
+#!/bin/sh
+# EXAMPLE: podcast-itunes-id-to-url 646330750
+
+# GNU grep switch
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    GREP="ggrep"
+else
+    GREP="grep"
+fi
+
+wget -q --no-check-certificate -O- "https://itunes.apple.com/lookup?id=$1&entity=podcast" | ${GREP} -oP '(?<=\"feedUrl\":\")http.*?[^\",]*'

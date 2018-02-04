@@ -1,0 +1,11 @@
+#!/bin/sh
+# EXAMPLE: podcast-rss-to-audio "http://feeds.feedburner.com/methodischinkorrekt"
+
+# GNU grep switch
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    GREP="ggrep"
+else
+    GREP="grep"
+fi
+
+wget -q --no-check-certificate -O- "$1" | ${GREP} -oP '(?<=\<enclosure url=\")http.*?[^\"]*'
