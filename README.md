@@ -29,3 +29,6 @@ http://feedproxy.google.com/~r/Methodischinkorrekt/~5/ [...]
 [...]
 ```
 The audio links can then be copied in your music player.
+
+## License
+This project is licensed under the terms of the MIT license - see the [LICENSE](LICENSE) file for details.
